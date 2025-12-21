@@ -3,39 +3,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Phlux builds core physics-based and machine-learning models for industrial inference: flow, state, and equipment condition." />
+  <meta name="description" content="Phlux builds physics-based and machine-learning models for operational insight: flow, state, and equipment condition." />
   <title>Phlux</title>
 
   <style>
     :root{
-      --bg: #0b0f17;
-      --card: rgba(255,255,255,0.06);
-      --card2: rgba(255,255,255,0.08);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.70);
-      --faint: rgba(255,255,255,0.55);
-      --line: rgba(255,255,255,0.14);
-      --accent: #7dd3fc; /* subtle cyan */
-      --accent2: #a78bfa; /* subtle violet */
-      --shadow: 0 12px 40px rgba(0,0,0,0.45);
-      --radius: 18px;
-      --max: 1100px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --bg: #ffffff;
+      --ink: #0b0f17;
+      --muted: rgba(11, 15, 23, 0.72);
+      --line: rgba(11, 15, 23, 0.12);
+      --soft: rgba(11, 15, 23, 0.06);
+      --max: 1180px;
+
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+      --h1: clamp(44px, 5vw, 76px);
+      --h2: clamp(26px, 3vw, 40px);
+      --h3: 18px;
+
+      --padX: 22px;
+      --radius: 18px;
     }
 
     *{ box-sizing: border-box; }
-    html, body { height: 100%; }
+    html, body{ height:100%; }
     body{
-      margin: 0;
+      margin:0;
       font-family: var(--sans);
-      color: var(--text);
-      background:
-        radial-gradient(900px 500px at 15% 10%, rgba(125,211,252,0.18), transparent 55%),
-        radial-gradient(900px 600px at 85% 0%, rgba(167,139,250,0.14), transparent 60%),
-        radial-gradient(700px 500px at 70% 90%, rgba(125,211,252,0.10), transparent 55%),
-        var(--bg);
-      overflow-x: hidden;
+      color: var(--ink);
+      background: var(--bg);
     }
 
     a{ color: inherit; text-decoration: none; }
@@ -44,458 +41,457 @@
     .wrap{
       max-width: var(--max);
       margin: 0 auto;
-      padding: 28px 20px 64px;
+      padding: 0 var(--padX);
     }
 
-    /* Top nav */
+    /* ===== Top bar ===== */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,0.90);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
     .nav{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap: 16px;
-      padding: 14px 0 24px;
+      gap: 18px;
+      height: 74px;
     }
+
     .brand{
       display:flex;
       align-items:center;
-      gap: 10px;
+      gap: 12px;
+      font-weight: 700;
       letter-spacing: 0.2px;
-      font-weight: 650;
-      font-size: 18px;
     }
     .mark{
       width: 12px;
       height: 12px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 6px rgba(125,211,252,0.10);
+      background: #0b0f17;
+      box-shadow: 0 0 0 6px rgba(11,15,23,0.08);
     }
-    .navlinks{
-      display:flex;
-      gap: 18px;
-      align-items:center;
+    .brand small{
+      display:block;
+      font-family: var(--mono);
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
       color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .links{
+      display:flex;
+      align-items:center;
+      gap: 16px;
+      color: rgba(11,15,23,0.80);
       font-size: 14px;
     }
-    .navlinks a{ padding: 8px 10px; border-radius: 999px; }
-    .navlinks a:hover{
-      background: rgba(255,255,255,0.06);
+    .links a{
+      padding: 10px 10px;
+      border-radius: 999px;
+    }
+    .links a:hover{
+      background: var(--soft);
       text-decoration: none;
-      color: var(--text);
     }
 
-    /* Hero */
-    .hero{
-      display:grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 22px;
-      align-items: stretch;
-      padding: 18px 0 22px;
-    }
-    @media (max-width: 860px){
-      .hero{ grid-template-columns: 1fr; }
-    }
-
-    .panel{
-      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.03));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 26px;
-      position: relative;
-      overflow: hidden;
-    }
-    .panel:before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background: radial-gradient(600px 220px at 20% 10%, rgba(125,211,252,0.10), transparent 60%),
-                  radial-gradient(520px 240px at 90% 20%, rgba(167,139,250,0.10), transparent 65%);
-      pointer-events:none;
-    }
-    .panel > *{ position: relative; z-index: 1; }
-
-    .kicker{
-      font-family: var(--mono);
-      color: var(--muted);
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-    h1{
-      margin: 10px 0 10px;
-      font-size: 44px;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-    }
-    @media (max-width: 520px){
-      h1{ font-size: 36px; }
-    }
-    .subtitle{
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.6;
-      max-width: 60ch;
-    }
-    .ctaRow{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
-    }
     .btn{
       display:inline-flex;
       align-items:center;
       gap: 10px;
+      padding: 12px 14px;
+      border: 1px solid var(--ink);
       border-radius: 999px;
-      padding: 11px 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
       font-size: 14px;
-      text-decoration: none;
+      line-height: 1;
+      white-space: nowrap;
     }
     .btn:hover{
-      background: rgba(255,255,255,0.10);
       text-decoration: none;
-    }
-    .btnPrimary{
-      border: 1px solid rgba(125,211,252,0.35);
-      background: linear-gradient(135deg, rgba(125,211,252,0.20), rgba(167,139,250,0.14));
-    }
-    .btnPrimary:hover{
-      background: linear-gradient(135deg, rgba(125,211,252,0.28), rgba(167,139,250,0.18));
+      background: var(--ink);
+      color: #fff;
     }
 
-    /* Side card */
-    .miniTitle{
-      font-weight: 650;
-      margin: 0 0 10px;
-      font-size: 15px;
-      color: var(--text);
-    }
-    .miniList{
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.45;
-    }
-    .pill{
-      display:inline-block;
-      font-family: var(--mono);
-      font-size: 12px;
-      color: rgba(255,255,255,0.78);
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--line);
-    }
-
-    /* Sections */
-    .section{
-      padding: 18px 0;
-    }
-    .sectionHeader{
+    /* ===== Hero ===== */
+    .hero{
+      position: relative;
+      min-height: 72vh;
       display:flex;
       align-items:flex-end;
-      justify-content:space-between;
-      gap: 16px;
-      padding: 10px 0 14px;
+      overflow:hidden;
+      border-bottom: 1px solid var(--line);
     }
-    .sectionHeader h2{
-      margin: 0;
-      font-size: 20px;
-      letter-spacing: -0.01em;
+    .heroMedia{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.40) 45%, rgba(0,0,0,0.15) 100%),
+        url("https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=2200&q=80");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.02);
     }
-    .sectionHeader p{
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      max-width: 70ch;
-      line-height: 1.5;
+    .heroContent{
+      position: relative;
+      width: 100%;
+      padding: 72px 0 64px;
+    }
+    .heroInner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--padX);
+      color: #fff;
     }
 
-    .grid{
+    .heroKicker{
+      font-family: var(--mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 13px;
+      opacity: 0.85;
+    }
+    .heroTitle{
+      margin: 14px 0 14px;
+      font-size: var(--h1);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      font-weight: 650;
+      max-width: 18ch;
+    }
+    .heroSub{
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 70ch;
+      opacity: 0.90;
+    }
+    .heroActions{
+      margin-top: 22px;
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btnLight{
+      border-color: rgba(255,255,255,0.85);
+      color: #fff;
+    }
+    .btnLight:hover{
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.95);
+      color: #fff;
+    }
+    .btnSolid{
+      background: #fff;
+      color: var(--ink);
+      border-color: #fff;
+    }
+    .btnSolid:hover{
+      background: rgba(255,255,255,0.86);
+      border-color: rgba(255,255,255,0.86);
+      color: var(--ink);
+    }
+
+    /* ===== Content blocks ===== */
+    .section{
+      padding: 74px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .grid2{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items:start;
     }
     @media (max-width: 980px){
-      .grid{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
     }
 
-    .card{
-      background: linear-gradient(180deg, var(--card2), rgba(255,255,255,0.03));
+    h2{
+      margin: 0 0 12px;
+      font-size: var(--h2);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      font-weight: 650;
+    }
+    .lede{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+      max-width: 80ch;
+    }
+
+    .callout{
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 18px;
+      padding: 22px;
+      background: #fff;
+    }
+    .callout h3{
+      margin: 0 0 10px;
+      font-size: var(--h3);
+      letter-spacing: -0.01em;
+      font-weight: 650;
+    }
+    .callout p, .callout li{
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.7;
+    }
+    .callout ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .cards{
+      margin-top: 34px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    @media (max-width: 980px){
+      .cards{ grid-template-columns: 1fr; }
+    }
+    .card{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      background: #fff;
+      min-height: 140px;
     }
     .card h3{
-      margin: 0 0 8px;
+      margin: 0 0 10px;
       font-size: 16px;
+      font-weight: 650;
       letter-spacing: -0.01em;
     }
     .card p{
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
+      font-size: 14.5px;
+      line-height: 1.7;
     }
 
-    /* How it works */
-    .steps{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-    @media (max-width: 980px){
-      .steps{ grid-template-columns: 1fr; }
-    }
-    .step{
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.05);
-      padding: 16px;
-    }
-    .step .n{
-      font-family: var(--mono);
-      color: rgba(255,255,255,0.78);
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .step .t{
-      font-weight: 650;
-      margin: 0 0 6px;
-      font-size: 14px;
-    }
-    .step .d{
-      margin: 0;
-      color: var(--muted);
-      font-size: 13.5px;
-      line-height: 1.5;
-    }
-
-    /* Footer */
-    footer{
-      margin-top: 26px;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-      color: var(--faint);
-      font-size: 13px;
+    /* ===== Contact ===== */
+    .contactRow{
       display:flex;
-      gap: 12px;
       flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    /* ===== Footer ===== */
+    footer{
+      padding: 34px 0 48px;
+      color: rgba(11,15,23,0.62);
+      font-size: 13px;
+    }
+    .footerRow{
+      display:flex;
       align-items:center;
       justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
     }
-    .fine{
-      font-family: var(--mono);
-    }
+    .fine{ font-family: var(--mono); }
 
-    /* Anchor offset for nav */
-    .anchor{ scroll-margin-top: 80px; }
+    /* Anchor offset for sticky nav */
+    .anchor{ scroll-margin-top: 88px; }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="nav">
-      <div class="brand">
-        <span class="mark" aria-hidden="true"></span>
-        <span>phlux</span>
-      </div>
-      <div class="navlinks">
-        <a href="#what">What</a>
-        <a href="#how">How</a>
-        <a href="#use">Use cases</a>
-        <a href="#contact">Contact</a>
+  <!-- Top nav -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <span class="mark" aria-hidden="true"></span>
+          <div>
+            <div>phlux</div>
+            <small>the phlux core</small>
+          </div>
+        </div>
+
+        <div class="links">
+          <a href="#what">What</a>
+          <a href="#how">How</a>
+          <a href="#use">Use cases</a>
+          <a href="#contact">Contact</a>
+          <a class="btn" href="#contact" aria-label="Connect">Connect with an expert →</a>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="hero">
-      <div class="panel">
-        <div class="kicker">Core industrial modeling</div>
-        <h1>Physics + ML models<br/>for operational insight.</h1>
-        <p class="subtitle">
-          Phlux delivers real-time estimates of flow and system condition by combining
+  <!-- Hero -->
+  <header class="hero" aria-label="Hero">
+    <div class="heroMedia" aria-hidden="true"></div>
+
+    <div class="heroContent">
+      <div class="heroInner">
+        <div class="heroKicker">Physics + ML inference</div>
+        <h1 class="heroTitle">Operational insight from limited signals.</h1>
+        <p class="heroSub">
+          Phlux delivers estimates of flow, system state, and equipment condition by combining
           physics-based modeling with machine-learning inference — designed for deployment,
           not research demos.
         </p>
 
-        <div class="ctaRow">
-          <a class="btn btnPrimary" href="#contact">Request a pilot</a>
-          <a class="btn" href="#use">View use cases</a>
-        </div>
-
-        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
-          <span class="pill">Hybrid physics + ML</span>
-          <span class="pill">Minimal instrumentation</span>
-          <span class="pill">Deployment-ready</span>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="miniTitle">What Phlux is</div>
-        <ul class="miniList">
-          <li><strong>Software-first</strong> inference of key operating variables when direct measurement is costly or impractical.</li>
-          <li><strong>Reusable approach</strong> across assets when system physics are similar.</li>
-          <li><strong>Built by engineers</strong> for teams that need traceability, robustness, and real-world performance.</li>
-        </ul>
-
-        <div style="height:14px;"></div>
-        <div class="miniTitle">Typical outputs</div>
-        <ul class="miniList">
-          <li>Flow rates (oil / gas / water or single-phase)</li>
-          <li>Equipment condition indicators (e.g., degradation proxies)</li>
-          <li>Operational state estimates and alerts</li>
-        </ul>
-      </div>
-    </div>
-
-    <div id="what" class="section anchor">
-      <div class="sectionHeader">
-        <h2>What we do</h2>
-        <p>
-          Phlux focuses on delivering actionable estimates from limited signals,
-          using models that are designed to be validated and deployed.
-        </p>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Infer what you can’t measure</h3>
-          <p>
-            Estimate key variables using available telemetry, boundary conditions, and
-            system knowledge — without adding hardware at every location.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Blend physics with learning</h3>
-          <p>
-            Use physics-based simulation to structure the problem and generate training data,
-            then apply ML for fast, robust inference in operation.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Deploy like a product</h3>
-          <p>
-            Package models with preprocessing, schemas, and versioning so they can run reliably
-            in real workflows (edge or cloud).
-          </p>
+        <div class="heroActions">
+          <a class="btn btnSolid" href="#contact">Request a pilot →</a>
+          <a class="btn btnLight" href="#use">View use cases</a>
         </div>
       </div>
     </div>
+  </header>
 
-    <div id="how" class="section anchor">
-      <div class="sectionHeader">
-        <h2>How it works</h2>
-        <p>
-          A simple, repeatable lifecycle: generate / validate → train → deploy → monitor.
-        </p>
-      </div>
+  <!-- What -->
+  <section id="what" class="section anchor">
+    <div class="wrap">
+      <div class="grid2">
+        <div>
+          <h2>What we do</h2>
+          <p class="lede">
+            Phlux focuses on delivering actionable estimates from limited telemetry, using models
+            that can be validated and deployed. The approach is software-first and scalable:
+            when system physics are similar, the method can be reused across assets and locations.
+          </p>
 
-      <div class="steps">
-        <div class="step">
-          <div class="n">Step 1</div>
-          <div class="t">Define the scope</div>
-          <p class="d">Signals available, outputs required, and operating envelope.</p>
+          <div class="cards">
+            <div class="card">
+              <h3>Infer what you can’t measure</h3>
+              <p>Estimate key variables using available telemetry, boundary conditions, and system knowledge — without adding hardware everywhere.</p>
+            </div>
+            <div class="card">
+              <h3>Blend physics with learning</h3>
+              <p>Use physics-based simulation to structure the problem and generate training data, then apply ML for fast inference in operation.</p>
+            </div>
+            <div class="card">
+              <h3>Deploy like a product</h3>
+              <p>Package models with preprocessing, schemas, and versioning so they run reliably in real workflows (edge or cloud).</p>
+            </div>
+          </div>
         </div>
-        <div class="step">
-          <div class="n">Step 2</div>
-          <div class="t">Build + validate</div>
-          <p class="d">Use physics-based modeling and field data alignment where available.</p>
-        </div>
-        <div class="step">
-          <div class="n">Step 3</div>
-          <div class="t">Train for inference</div>
-          <p class="d">Train ML models on synthetic + historical data with realistic noise and constraints.</p>
-        </div>
-        <div class="step">
-          <div class="n">Step 4</div>
-          <div class="t">Deploy + monitor</div>
-          <p class="d">Package the runtime with versioning, tests, and monitoring for drift and reliability.</p>
-        </div>
+
+        <aside class="callout">
+          <h3>Typical outputs</h3>
+          <ul>
+            <li>Flow rates (single-phase or multiphase)</li>
+            <li>Condition indicators (e.g., degradation proxies)</li>
+            <li>Operational state estimates and alerts</li>
+          </ul>
+
+          <h3 style="margin-top:18px;">Designed for</h3>
+          <ul>
+            <li>Engineering teams that need traceability and robustness</li>
+            <li>Operations teams that need confidence in runtime outputs</li>
+            <li>Pilots that must prove value quickly</li>
+          </ul>
+        </aside>
       </div>
     </div>
+  </section>
 
-    <div id="use" class="section anchor">
-      <div class="sectionHeader">
-        <h2>Use cases</h2>
-        <p>
-          Example applications — Phlux is designed to extend measurement and improve operational awareness.
-        </p>
+  <!-- How -->
+  <section id="how" class="section anchor">
+    <div class="wrap">
+      <div class="grid2">
+        <div>
+          <h2>How it works</h2>
+          <p class="lede">
+            A simple lifecycle: define scope → validate assumptions → train → deploy → monitor.
+            Phlux uses physics to keep inference grounded and ML to make it operationally fast.
+          </p>
+        </div>
+        <aside class="callout">
+          <h3>Lifecycle</h3>
+          <ul>
+            <li><strong>Define scope:</strong> signals, outputs, operating envelope</li>
+            <li><strong>Model + validate:</strong> physics alignment to expected behavior</li>
+            <li><strong>Train for inference:</strong> realistic noise, constraints, monitoring targets</li>
+            <li><strong>Deploy + monitor:</strong> versioned runtime, drift checks, reliability</li>
+          </ul>
+        </aside>
       </div>
+    </div>
+  </section>
 
-      <div class="grid">
+  <!-- Use cases -->
+  <section id="use" class="section anchor">
+    <div class="wrap">
+      <h2>Use cases</h2>
+      <p class="lede">
+        Example applications — Phlux is designed to extend measurement and improve operational awareness.
+      </p>
+
+      <div class="cards">
         <div class="card">
           <h3>Virtual Flow Metering</h3>
-          <p>
-            Estimate multiphase or single-phase flow rates using pressure/temperature and other available
-            signals, reducing dependency on inline meters.
-          </p>
+          <p>Estimate flow rates using pressure/temperature and other available signals, reducing dependency on inline meters.</p>
         </div>
         <div class="card">
           <h3>Equipment condition inference</h3>
-          <p>
-            Track condition indicators (e.g., degradation proxies) from system response, enabling earlier
-            detection of performance loss.
-          </p>
+          <p>Track condition indicators from system response to detect performance loss earlier.</p>
         </div>
         <div class="card">
           <h3>Operational state + alerts</h3>
-          <p>
-            Detect off-normal behavior and provide state estimates that support troubleshooting and decision-making.
-          </p>
+          <p>Detect off-normal behavior and provide state estimates that support troubleshooting and decision-making.</p>
         </div>
       </div>
     </div>
+  </section>
 
-    <div id="contact" class="section anchor">
-      <div class="sectionHeader">
-        <h2>Contact</h2>
-        <p>
-          For pilot discussions or questions, reach out directly.
-        </p>
-      </div>
+  <!-- Contact -->
+  <section id="contact" class="section anchor">
+    <div class="wrap">
+      <div class="grid2">
+        <div>
+          <h2>Contact</h2>
+          <p class="lede">
+            For pilot discussions, share the asset type, available signals, and what you want to infer.
+          </p>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Email</h3>
-          <p>
-            <a href="mailto:hello@thephluxcore.com">hello@thephluxcore.com</a>
-          </p>
-          <p style="margin-top:10px; color: var(--muted);">
-            Prefer a short note: asset type, signals available, and what you want to infer (flow / condition / other).
-          </p>
-        </div>
-        <div class="card">
-          <h3>Company</h3>
-          <p>
-            Phlux LLC<br/>
-            Houston, TX (US)
+          <div class="contactRow">
+            <a class="btn" href="mailto:hello@thephluxcore.com">hello@thephluxcore.com</a>
+            <a class="btn" href="#what">Capabilities</a>
+          </div>
+
+          <p class="lede" style="margin-top:18px;">
+            Based in Houston, TX (US). Available for remote pilots and field deployments.
           </p>
         </div>
-        <div class="card">
-          <h3>Optional</h3>
-          <p>
-            Add links here later (papers, conference presentations, a one-page PDF, etc.).
-          </p>
-        </div>
+
+        <aside class="callout">
+          <h3>What to include in your note</h3>
+          <ul>
+            <li>Asset type and location (high-level)</li>
+            <li>Available signals (pressure, temperature, etc.)</li>
+            <li>Target outputs (flow, condition, other)</li>
+            <li>Expected timeline for a pilot decision</li>
+          </ul>
+        </aside>
       </div>
     </div>
+  </section>
 
-    <footer>
-      <div class="fine">© <span id="y"></span> Phlux LLC</div>
-      <div class="fine">thephluxcore.com</div>
-    </footer>
-  </div>
+  <footer>
+    <div class="wrap">
+      <div class="footerRow">
+        <div class="fine">© <span id="y"></span> Phlux LLC</div>
+        <div class="fine">thephluxcore.com</div>
+      </div>
+    </div>
+  </footer>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
