@@ -1,0 +1,197 @@
+<main id="page-how" class="page" aria-label="How">
+  <section class="section">
+    <div class="wrap">
+
+      <h2>How it works</h2>
+      <p class="lede">
+        A practical workflow designed for pilots: start with clear scope and acceptance criteria,
+        build coverage with synthetic scenarios, train for robust inference, deploy as a versioned runtime,
+        and monitor performance over time.
+      </p>
+
+      <div class="steps workflowSteps" aria-label="Process steps">
+        <div class="step">
+          <div class="stepNum">1</div>
+          <h3 class="stepTitle">Define scope</h3>
+          <p class="stepBody">
+            Identify available signals, target outputs, operating envelope, and acceptance criteria.
+          </p>
+          <div class="badgeRow">
+            <span class="badge">signals</span>
+            <span class="badge">outputs</span>
+            <span class="badge">criteria</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="stepNum">2</div>
+          <h3 class="stepTitle">Model + generate synthetic data</h3>
+          <p class="stepBody">
+            Build coverage across realistic operating conditions and edge cases using structured scenario generation.
+          </p>
+          <div class="badgeRow">
+            <span class="badge">coverage</span>
+            <span class="badge">edge cases</span>
+            <span class="badge">noise</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="stepNum">3</div>
+          <h3 class="stepTitle">Train</h3>
+          <p class="stepBody">
+            Train inference models and validate performance across the full envelope, not just nominal conditions.
+          </p>
+          <div class="badgeRow">
+            <span class="badge">validation</span>
+            <span class="badge">robustness</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="stepNum">4</div>
+          <h3 class="stepTitle">Deploy</h3>
+          <p class="stepBody">
+            Package a versioned runtime (schema + preprocessing + model) for reliable integration into workflows.
+          </p>
+          <div class="badgeRow">
+            <span class="badge">versioned</span>
+            <span class="badge">runtime</span>
+            <span class="badge">API-ready</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="stepNum">5</div>
+          <h3 class="stepTitle">Monitor</h3>
+          <p class="stepBody">
+            Track drift, reliability, and performance so outputs remain trustworthy as operations change.
+          </p>
+          <div class="badgeRow">
+            <span class="badge">drift</span>
+            <span class="badge">reliability</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="pilotReadySection">
+        <h3>What makes it pilot-ready</h3>
+
+        <div class="pilotReadyGrid">
+          <div class="pilotCard">
+            <span class="check">✓</span>
+            <div>
+              <strong>Clear acceptance criteria</strong>
+              <p>Defined before any model training begins</p>
+            </div>
+          </div>
+
+          <div class="pilotCard">
+            <span class="check">✓</span>
+            <div>
+              <strong>Coverage-driven data</strong>
+              <p>Includes edge cases, not only nominal conditions</p>
+            </div>
+          </div>
+
+          <div class="pilotCard">
+            <span class="check">✓</span>
+            <div>
+              <strong>Versioned deployment</strong>
+              <p>Schema + preprocessing + model artifacts</p>
+            </div>
+          </div>
+
+          <div class="pilotCard">
+            <span class="check">✓</span>
+            <div>
+              <strong>Monitoring plan</strong>
+              <p>Drift + reliability, not just offline accuracy</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <div class="deploymentSplit" style="margin-top:34px;">
+  <div class="deploymentGrid">
+
+    <!-- LEFT -->
+    <div class="deploymentLeft">
+      <h2 style="margin-bottom:12px;">Deployment options</h2>
+      <p class="lede deploymentLede">
+        Phlux can be deployed in the environment that best fits your IT/OT constraints — from a small-footprint
+        on-prem runtime near the data source to centralized cloud deployments for fleet-scale rollout.
+      </p>
+
+      <div class="cards" style="margin-top:22px;">
+        <div class="card flatBox">
+          <h3>On-prem / edge</h3>
+          <p>
+            Inference runs entirely within the customer’s network, either on existing servers or a dedicated small-footprint compute device installed on site.
+          </p>
+        </div>
+
+        <div class="card flatBox">
+          <h3>Cloud</h3>
+          <p>
+            Inference runs in a centralized cloud environment. Suitable for portfolio-level deployments where data can be securely transmitted off-site.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="deploymentDiagram">
+      <img
+        src="assets/data_flow_diagram.png"
+        alt="High-level data flow showing plant signals sent to cloud-based Phlux inference runtime and predictions returned"
+        loading="lazy"
+      />
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+        <!-- Integration capabilities (cards only)
+        <div class="integrationGrid" aria-label="Integration capabilities" style="margin-top:18px;">
+          <div class="integrationItem">
+            <div class="integrationKicker">API</div>
+            <div class="integrationTitle">Flexible REST endpoints</div>
+            <p class="integrationBody">
+              Inference, health checks, and version discovery for reliable automation.
+            </p>
+          </div>
+
+          <div class="integrationItem">
+            <div class="integrationKicker">Schemas</div>
+            <div class="integrationTitle">Versioned inputs / outputs</div>
+            <p class="integrationBody">
+              Stable, versioned schemas with validation and clear error responses.
+            </p>
+          </div>
+
+          <div class="integrationItem">
+            <div class="integrationKicker">Packaging</div>
+            <div class="integrationTitle">Runtime bundles</div>
+            <p class="integrationBody">
+              Package preprocessing + model artifacts so behavior is repeatable across environments.
+            </p>
+          </div>
+        </div>-->
+      </div>
+
+    </div>
+  </section>
+</main>

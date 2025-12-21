@@ -1,0 +1,954 @@
+:root{
+      --bg: #ffffff;
+      --ink: #0b0f17;
+      --muted: rgba(11, 15, 23, 0.72);
+      --line: rgba(11, 15, 23, 0.12);
+      --soft: rgba(11, 15, 23, 0.06);
+      --max: 1180px;
+
+      /* Added accents to match your reference image */
+      --teal: #2b7a86;
+      --teal2: #3aa0a9;
+      --blue: #1f5f7a;
+      --panel: rgba(16, 84, 110, 0.06);
+
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+      --h1: clamp(44px, 5vw, 76px);
+      --h2: clamp(26px, 3vw, 40px);
+      --h3: 18px;
+
+      --padX: 22px;
+      --radius: 18px;
+    }
+
+    *{ box-sizing: border-box; }
+
+    html, body{ height:100%; width:100%; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    img{ max-width:100%; height:auto; display:block; }
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    /* ===== Process / Step graphic ===== */
+    .steps {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    @media (max-width: 1200px){
+      .steps {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 8px;
+      }
+    }
+
+    .step {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: #fff;
+      min-height: 140px;
+      overflow: hidden;
+    }
+
+    .step::before {
+      content: "";
+      position: absolute;
+      top: 26px;
+      left: 56px;
+      right: -14px;
+      height: 1px;
+      background: var(--line);
+      opacity: 0.9;
+    }
+
+    @media (max-width: 980px){
+      .step::before { display:none; }
+    }
+
+    .step:last-child::before { display: none; }
+
+    .stepNum {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 10px;
+      background: rgba(11,15,23,0.02);
+    }
+
+    .stepTitle {
+      margin: 0 0 8px;
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+
+    .stepBody {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.7;
+    }
+
+    .badgeRow {
+      margin-top: 14px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(11,15,23,0.03);
+      color: rgba(11,15,23,0.78);
+    }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--padX);
+    }
+
+    /* ===== Top bar ===== */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,0.90);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 16px;
+      min-height: 74px;
+      padding: 10px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 14px;
+      min-width: 210px;
+    }
+
+    .brand img{
+      height: 75px;
+      width: auto;
+      background: transparent;
+
+      -webkit-mask-image: radial-gradient(circle at center, #000 78%, transparent 100%);
+      mask-image: radial-gradient(circle at center, #000 78%, transparent 100%);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+
+      filter: brightness(1.02) contrast(1.02);
+    }
+
+    .links{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      color: rgba(11,15,23,0.80);
+      font-size: 14px;
+    }
+
+    .navlink {
+      padding: 10px 14px;
+      border-radius: 0;                 /* sharp corners */
+      border: none;                     /* no border */
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+
+      background: transparent;          /* default: no fill */
+      color: #000;                      /* black text */
+      font-weight: 400;
+    }
+
+    .navlink:hover {
+      background: rgba(0, 160, 190, 0.08);  /* light blue from logo */
+      text-decoration: none;
+    }
+
+    .navlink.active {
+      background: rgba(0, 160, 190, 0.16);  /* logo blue, flat */
+      font-weight: 500;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      font-size: 14px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .btn:hover{
+      text-decoration: none;
+      background: var(--ink);
+      color: #fff;
+    }
+
+    /* ===== "Pages" ===== */
+    .page{ display:none; }
+    .page.active{ display:block; }
+
+    /* ===== Hero (Home page) ===== */
+    .hero{
+      position: relative;
+      min-height: 78vh;
+      display:flex;
+      align-items:flex-end;
+      overflow:hidden;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .btnPrimary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+
+      padding: 12px 18px;
+      background: #2f2f33;     /* dark engineering grey */
+      color: #ffffff;
+
+      border: none;
+      border-radius: 0;        /* sharp edges */
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .btnPrimary:hover {
+      background: #1f1f22;     /* slightly darker */
+      text-decoration: none;
+    }
+    .heroMedia{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.42) 45%, rgba(0,0,0,0.18) 100%),
+        url("assets/hero.png");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.02);
+    }
+
+    .heroContent{
+      position: relative;
+      width: 100%;
+      padding: 72px 0 64px;
+    }
+
+    .heroInner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--padX);
+      color: #fff;
+    }
+
+    .heroKicker{
+      font-family: var(--mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 13px;
+      opacity: 0.88;
+    }
+
+    .heroTitle{
+      margin: 14px 0 14px;
+      font-size: var(--h1);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      font-weight: 650;
+      max-width: 24ch;
+    }
+
+    .heroSub{
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 78ch;
+      opacity: 0.92;
+    }
+
+    .heroActions{
+      margin-top: 22px;
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btnLight{
+      border-color: rgba(255,255,255,0.85);
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .btnLight:hover{
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.95);
+      color: #fff;
+    }
+
+    .btnSolid{
+      background: #fff;
+      color: var(--ink);
+      border-color: #fff;
+    }
+
+    .btnSolid:hover{
+      background: rgba(255,255,255,0.88);
+      border-color: rgba(255,255,255,0.88);
+      color: var(--ink);
+    }
+
+    /* ===== Content blocks ===== */
+    .section{
+      padding: 74px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    h2{
+      margin: 0 0 12px;
+      font-size: var(--h2);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      font-weight: 650;
+    }
+
+    .lede{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+      max-width: 80ch;
+    }
+
+    .lede + .lede { margin-top: 16px; }
+
+    .callout{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      background: #fff;
+      align-self: start;
+      height: fit-content;
+    }
+
+    .callout h3{
+      margin: 0 0 10px;
+      font-size: var(--h3);
+      letter-spacing: -0.01em;
+      font-weight: 650;
+    }
+
+    .callout p, .callout li{
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.7;
+    }
+
+    .callout ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .cards{
+      margin-top: 34px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: #fff;
+      min-height: 140px;
+    }
+
+    .card h3{
+      margin: 0 0 10px;
+      font-size: 16px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    #page-what .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* ===== Virtual Pilot: diagram styles ===== */
+    .pilotHeader {
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .pilotTitleBlock p{
+      margin:0;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.75;
+      max-width: 80ch;
+    }
+
+    .diagramCard{
+      border: 1px solid rgba(16, 84, 110, 0.14);
+      border-radius: calc(var(--radius) + 6px);
+      background: #fff;
+      padding: 16px;
+      overflow: hidden;
+      box-shadow: 0 16px 44px rgba(16, 84, 110, 0.12);
+    }
+
+    .diagramWrap{
+      width: 100%;
+      border-radius: 16px;
+      background:
+        radial-gradient(1200px 420px at 28% 40%, rgba(58,160,169,0.12), transparent 55%),
+        radial-gradient(900px 380px at 78% 65%, rgba(31,95,122,0.10), transparent 58%),
+        linear-gradient(180deg, rgba(255,255,255,1), rgba(245,251,252,1));
+      border: 1px solid rgba(16, 84, 110, 0.18);
+      padding: 14px;
+    }
+
+    .diagramCaption{
+      margin-top: 12px;
+      color: rgba(11,15,23,0.68);
+      font-size: 13px;
+      line-height: 1.6;
+      font-family: var(--mono);
+    }
+
+    /* SVG look (teal/blue scheme) */
+    .pfd svg{ width:100%; height:auto; display:block; }
+    .pfd .wire{ stroke: rgba(31,95,122,0.35); stroke-width: 2; fill:none; }
+    .pfd .pipe{ stroke: rgba(43,122,134,0.92); stroke-width: 4; fill:none; stroke-linecap: round; stroke-linejoin: round; }
+    .pfd .pipeSoft{ stroke: rgba(31,95,122,0.40); stroke-width: 4; fill:none; stroke-linecap: round; stroke-linejoin: round; }
+    .pfd .symbol{ stroke: rgba(16, 84, 110, 0.78); stroke-width: 2.5; fill: #fff; }
+    .pfd .fillSoft{ fill: rgba(58,160,169,0.08); }
+    .pfd .label{ fill: rgba(11,15,23,0.84); font-size: 12.5px; font-family: var(--mono); }
+    .pfd .small{ fill: rgba(11,15,23,0.62); font-size: 11.5px; font-family: var(--mono); }
+
+    /* Draw animation */
+    .pfd .draw {
+      stroke-dasharray: 900;
+      stroke-dashoffset: 900;
+      animation: drawLine 1.35s ease forwards;
+    }
+    .pfd .draw2 { animation-delay: .18s; }
+    .pfd .draw3 { animation-delay: .30s; }
+    .pfd .draw4 { animation-delay: .42s; }
+
+    @keyframes drawLine { to { stroke-dashoffset: 0; } }
+
+    /* Flow dots */
+    .pfd .flowDot { fill: rgba(43,122,134,0.92); opacity: 0.95; }
+    .pfd .flowDotSoft { fill: rgba(31,95,122,0.45); opacity: 0.85; }
+
+    @media (prefers-reduced-motion: reduce){
+      .pfd .draw { animation: none; stroke-dashoffset: 0; }
+      .pfd animateMotion, .pfd animate { display:none; }
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 980px){
+      .grid2{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+      .brand img{ height: 64px; }
+    }
+
+    @media (max-width: 640px) {
+      .nav { flex-wrap: wrap; gap: 10px; padding-top: 8px; padding-bottom: 8px; }
+      .links { width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+      .navlink { padding: 8px 10px; font-size: 13px; }
+      .btn { padding: 10px 12px; font-size: 13px; }
+      .brand img { height: 56px; }
+      .cards{ grid-template-columns: 1fr; }
+      #page-what .cards { grid-template-columns: 1fr; }
+    }
+
+    /* ===== Footer ===== */
+    footer{
+      padding: 34px 0 48px;
+      color: rgba(11,15,23,0.62);
+      font-size: 13px;
+    }
+
+    .footerRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+
+    .fine{ font-family: var(--mono); }
+
+        /* Flat engineering-style box (used on Pilot + Value Drivers) */
+    .flatBox {
+      background: #f3f3f3;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 22px;
+    }
+    .plain {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+    /* Publications tiles (screenshot style) */
+  .pubSection{
+    margin-top: 28px;
+  }
+
+  .pubHeading{
+    margin-bottom: 14px;
+  }
+
+  .pubGrid{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+  }
+
+  @media (max-width: 980px){
+    .pubGrid{ grid-template-columns: 1fr; }
+  }
+
+  .pubCard{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pubThumb{
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;     /* consistent tile height */
+    overflow: hidden;
+    background: #f3f3f3;      /* flat placeholder */
+  }
+
+  .pubThumb img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Text matches your clean engineering feel */
+  .pubTitle{
+    margin: 14px 0 6px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .pubDesc{
+    margin: 0 0 14px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+    max-width: 36ch; /* keeps it looking like the screenshot */
+  }
+
+  .pubLink{
+    display: inline-block;
+    width: fit-content;
+    padding-bottom: 4px;
+    border-bottom: 2px solid currentColor;
+    text-decoration: none;
+    color: #0b57d0; /* adjust to your site link color if needed */
+  }
+
+  .pubLink:hover{
+    opacity: 0.85;
+  }
+
+  /* Force publications into a clean 1-column stack when in sidebar */
+  .pubGrid--stack{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  /* Make thumbs look good in a narrower column */
+  .pubGrid--stack .pubThumb img{
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+/* ==========================
+   HOW: workflow styling
+   (sharp edges + top accents)
+   ========================== */
+
+.workflowSteps {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(220px, 1fr));
+  gap: 18px;
+
+  /* lets it scroll horizontally only if the screen is too narrow */
+  overflow-x: auto;
+  padding-bottom: 10px;
+
+  /* optional: smoother scrolling feel */
+  scroll-snap-type: x proximity;
+}
+
+.workflowSteps .step {
+  /* sharp-ish edges */
+  border-radius: 4px;                 /* set to 0 if you want fully square */
+  border: 1px solid var(--line);
+  background: var(--card, #fff);
+
+  /* top accent */
+  border-top: 4px solid var(--accent, #0b77b6);
+
+  /* spacing */
+  padding: 16px 16px 14px;
+
+  /* keeps cards feeling crisp */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+
+  /* nice behavior if horizontal scroll happens */
+  scroll-snap-align: start;
+}
+
+/* Slightly different accent per step (same family, subtle progression) */
+.workflowSteps .step:nth-child(1) { --accent: #0b77b6; } /* Phlux blue */
+.workflowSteps .step:nth-child(2) { --accent: #0a6ea8; }
+.workflowSteps .step:nth-child(3) { --accent: #08658f; }
+.workflowSteps .step:nth-child(4) { --accent: #075b80; }
+.workflowSteps .step:nth-child(5) { --accent: #064f6f; }
+
+/* Step number: make it match the accent */
+.workflowSteps .stepNum {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 700;
+  font-size: 14px;
+
+  /* brand cue */
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  background: rgba(255,255,255,0.9);
+}
+
+/* Titles / body spacing tightened slightly for cleanliness */
+.workflowSteps .stepTitle {
+  margin: 10px 0 8px;
+  font-size: 16px;
+}
+
+.workflowSteps .stepBody {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* Badges: keep them subtle and consistent */
+.workflowSteps .badgeRow {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.workflowSteps .badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,0.02);
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+/* Responsive: collapse to 2 columns on smaller screens (no scroll) */
+@media (max-width: 1100px) {
+  .workflowSteps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .workflowSteps {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   PILOT-READY BOXED SECTION
+   ========================= */
+
+.pilotReadySection {
+  margin-top: 42px;
+}
+
+.pilotReadySection h3 {
+  margin-bottom: 16px;
+}
+
+/* Outer container feel (light structure, not heavy) */
+.pilotReadyGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 900px;   /* keeps it readable but LEFT aligned */
+}
+
+/* Individual checklist cards */
+.pilotCard {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 4px;     /* sharp edges */
+  padding: 14px 16px;
+
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Checkmark */
+.pilotCard .check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+
+  background: #0b77b6;    /* Phlux blue */
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.pilotCard strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.pilotCard p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .pilotReadyGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Option C: single panel with 3 columns (matches your clean enterprise style) */
+  .integrationPanel{
+    border: 1px solid var(--line);
+    border-radius: 6px; /* sharp-ish */
+    background: rgba(0,0,0,0.015);
+    padding: 18px;
+  }
+
+  .integrationGrid{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 14px;
+  }
+
+  .integrationItem{
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+    padding: 14px 14px 12px;
+  }
+
+  .integrationKicker{
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .integrationTitle{
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .integrationBody{
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .integrationPills{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .pill{
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(0,0,0,0.02);
+    color: var(--muted);
+    font-size: 12.5px;
+  }
+
+  @media (max-width: 900px){
+    .integrationGrid{ grid-template-columns: 1fr; }
+  }
+
+  .deploymentGrid{
+    display:grid;
+    grid-template-columns: 1.0fr 1.1fr; /* give image more room */
+    gap: 28px;
+    align-items: stretch; /* makes both columns same row height */
+  }
+
+  /* Prevent text from stretching too wide */
+  .deploymentLede{
+    max-width: 60ch; /* adjust (50–70ch) to taste */
+  }
+
+  /* Image column: no card/outline, make it fill height */
+  .deploymentDiagram{
+    display:flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    /* remove any inherited card styling if present */
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  /* Make image tall enough to match left column (cards) */
+  .deploymentDiagram img{
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    display:block;
+
+    /* remove outline/box look */
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0; /* or keep slight rounding if you want: 10px */
+  }
+
+  /* Mobile: stack cleanly */
+  @media (max-width: 900px){
+    .deploymentGrid{
+      grid-template-columns: 1fr;
+    }
+    .deploymentDiagram{
+      justify-content: center;
+      margin-top: 16px;
+    }
+    .deploymentDiagram img{
+      width: 100%;
+      height: auto;
+    }
+  }
+
+    /* Make deployment cards wider */
+  .deploymentLeft .cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  /* Let cards fill more horizontal space */
+  .deploymentLeft .card{
+    width: 100%;
+  }
