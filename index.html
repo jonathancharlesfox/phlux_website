@@ -1,9 +1,10 @@
 <!doctype html>
+<!-- Updated hero headline to Option A + added CSS to help the logo edge blend -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Phlux builds physics-based and machine-learning models for operational insight: flow, state, and equipment condition." />
+  <meta name="description" content="Phlux delivers machine-learning inference for operational insight: flow, operating state, and equipment condition." />
   <title>phlux</title>
 
   <style>
@@ -37,6 +38,96 @@
 
     a{ color: inherit; text-decoration: none; }
     a:hover{ text-decoration: underline; }
+/* ===== Process / Step graphic ===== */
+    .steps {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    /* Allow horizontal scroll on smaller screens */
+    @media (max-width: 1200px){
+      .steps {
+        overflow-x: auto;
+        padding-bottom: 8px;
+      }
+    }
+
+    .step {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 18px 18px 18px;
+      background: #fff;
+      min-height: 140px;
+      overflow: hidden;
+    }
+
+    .step::before {
+      content: "";
+      position: absolute;
+      top: 26px;
+      left: 56px;
+      right: -14px;
+      height: 1px;
+      background: var(--line);
+      opacity: 0.9;
+    }
+
+    @media (max-width: 980px){
+      .step::before { display:none; }
+    }
+
+    .step:last-child::before {
+      display: none;
+    }
+
+    .stepNum {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 10px;
+      background: rgba(11,15,23,0.02);
+    }
+
+    .stepTitle {
+      margin: 0 0 8px;
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+
+    .stepBody {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.7;
+    }
+
+    .badgeRow {
+      margin-top: 14px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(11,15,23,0.03);
+      color: rgba(11,15,23,0.78);
+    }
 
     .wrap{
       max-width: var(--max);
@@ -68,10 +159,27 @@
       gap: 14px;
       min-width: 210px;
     }
+
+    /* Logo edge blending
+       - If your PNG has a slightly-off-white background, this "feathers" the edges so the box line is far less visible.
+       - Best long-term fix is still exporting the logo as a transparent PNG, but this helps immediately.
+    */
     .brand img{
-      height: 44px;
+      height: 75px;
       width: auto;
       display:block;
+      background: transparent;
+
+      /* feather edge */
+      -webkit-mask-image: radial-gradient(circle at center, #000 78%, transparent 100%);
+      mask-image: radial-gradient(circle at center, #000 78%, transparent 100%);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+
+      /* tiny tuning to reduce off-white halo */
+      filter: brightness(1.02) contrast(1.02);
     }
 
     .links{
@@ -166,13 +274,13 @@
       line-height: 1.02;
       letter-spacing: -0.02em;
       font-weight: 650;
-      max-width: 22ch;
+      max-width: 24ch;
     }
     .heroSub{
       margin: 0;
       font-size: 16px;
       line-height: 1.7;
-      max-width: 72ch;
+      max-width: 78ch;
       opacity: 0.92;
     }
     .heroActions{
@@ -216,6 +324,7 @@
     @media (max-width: 980px){
       .grid2{ grid-template-columns: 1fr; }
       .brand{ min-width: unset; }
+      .brand img{ height: 150px; }
     }
 
     h2{
@@ -231,6 +340,9 @@
       font-size: 16px;
       line-height: 1.8;
       max-width: 80ch;
+    }
+    .lede + .lede {
+      margin-top: 16px;
     }
 
     .callout{
@@ -309,15 +421,15 @@
     <div class="wrap">
       <div class="nav">
         <a class="brand" href="#home" data-page="home" aria-label="Home">
-          <img src="assets/phlux-logo.png" alt="phlux logo" />
+          <img src="assets/phlux-logo1.png" alt="phlux logo" />
         </a>
 
-        <div class="links" aria-label="Navigation">
-          <span class="navlink" data-page="what">What</span>
+        <div class="links">
+          <span class="navlink" data-page="home">Home</span>
           <span class="navlink" data-page="how">How</span>
           <span class="navlink" data-page="use">Use cases</span>
+          <span class="navlink" data-page="what">Who we are</span>
           <span class="navlink" data-page="contact">Contact</span>
-          <a class="btn" href="#contact" data-page="contact" aria-label="Connect">Connect with an expert →</a>
         </div>
       </div>
     </div>
@@ -330,12 +442,14 @@
 
       <div class="heroContent">
         <div class="heroInner">
-          <div class="heroKicker">Physics + ML inference</div>
-          <h1 class="heroTitle">Operational insight from limited signals.</h1>
+          <div class="heroKicker">ML inference</div>
+
+          <!-- UPDATED -->
+          <h1 class="heroTitle">Re-thinking how operational insight is delivered.</h1>
+
+          <!-- UPDATED (Option A) -->
           <p class="heroSub">
-            Phlux delivers estimates of flow, system state, and equipment condition by combining
-            physics-based modeling with machine-learning inference — designed for deployment,
-            not research demos.
+            Phlux uses machine-learning inference to estimate flow, operating state, and equipment condition from existing field signals.
           </p>
 
           <div class="heroActions">
@@ -350,10 +464,16 @@
       <div class="wrap">
         <div class="grid2">
           <div>
-            <h2>Built for pilots that must prove value quickly</h2>
+            <h2>What we do</h2>
             <p class="lede">
-              Phlux is software-first: define the inference objective, validate assumptions, deploy a versioned runtime,
-              and monitor performance. The goal is credible, repeatable outputs — not a one-off demo.
+              Phlux enables operators to extract more value from existing operational data by inferring key 
+              quantities that are difficult, costly, or impractical to measure directly. The emphasis is on scalable insight — solutions that 
+              can be validated on one asset and extended across similar systems without increasing field complexity.
+            </p>
+            <p class="lede">
+              Rather than introducing new instrumentation, Phlux leverages patterns in operational behavior to deliver reliable estimates of 
+              flow, system behavior, and equipment condition. This approach lowers deployment cost and enables solutions to scale across equipment with similar 
+              operating and physical characteristics.
             </p>
           </div>
           <aside class="callout">
@@ -365,128 +485,322 @@
               <li>Monitoring plan (drift / reliability)</li>
             </ul>
           </aside>
+
+          <div style="margin-top:36px;">
+          <h2>Value Drivers</h2>
+
+          <p class="lede">
+            By inferring key quantities from existing signals, Phlux avoids many of the cost and operational
+            constraints associated with traditional instrumentation-heavy approaches.
+          </p>
+
+          <div class="cards" style="margin-top:22px;">
+            <div class="card">
+              <h3>Lower deployment friction</h3>
+              <p>
+                No need to purchase, install, or maintain additional field hardware. Inference is deployed
+                in software, avoiding production shutdowns, hot work, and instrumentation lead times.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Reuse across similar systems</h3>
+              <p>
+                Once validated on one asset, inference models can often be extended across equipment or
+                lines with similar physics and operating characteristics — where traditional approaches
+                would require separate meters at each location.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>One runtime, many use cases</h3>
+              <p>
+                A single inference runtime can support multiple measurements or assets in parallel,
+                reducing per-point cost and enabling scale without increasing field complexity.
+              </p>
+            </div>
+          </div>
+        </div>
+
         </div>
       </div>
     </section>
   </main>
 
-  <!-- WHAT page -->
-  <main id="page-what" class="page" aria-label="What">
-    <section class="section">
-      <div class="wrap">
-        <div class="grid2">
-          <div>
-            <h2>What we do</h2>
-            <p class="lede">
-              Phlux focuses on delivering actionable estimates from limited telemetry, using models
-              that can be validated and deployed. When system physics are similar, the method can be reused
-              across assets and measurement points.
-            </p>
+<!-- WHO WE ARE page -->
+<main id="page-what" class="page" aria-label="Who we are">
+  <section class="section">
+    <div class="wrap">
+      <div class="grid2">
 
-            <div class="cards">
-              <div class="card">
-                <h3>Infer what you can’t measure</h3>
-                <p>Estimate key variables using available telemetry, boundary conditions, and system knowledge — without hardware everywhere.</p>
-              </div>
-              <div class="card">
-                <h3>Blend physics with learning</h3>
-                <p>Use physics-based simulation to structure the problem and generate training data, then apply ML for fast runtime inference.</p>
-              </div>
-              <div class="card">
-                <h3>Deploy like a product</h3>
-                <p>Package models with preprocessing, schemas, and versioning so they run reliably in real workflows (edge or cloud).</p>
-              </div>
+        <!-- LEFT COLUMN -->
+        <div>
+          <!-- Founder block -->
+          <div style="display:flex; gap:24px; align-items:flex-start; margin-bottom:24px; flex-wrap:wrap;">
+            <img
+              src="assets/photo.jpg"
+              alt="Jonathan Fox"
+              style="
+                width:160px;
+                height:160px;
+                object-fit:cover;
+                border-radius:12px;
+                border:1px solid var(--line);
+              "
+            />
+
+            <div>
+              <p class="lede" style="margin:0; line-height:1.3;">
+                <strong>Jonathan Fox</strong><br>
+                Founder and CEO
+              </p>
+
+              <ul style="margin:10px 0 12px; padding-left:18px; color:var(--muted); font-size:14.5px; line-height:1.7;">
+                <li>B.S. Petroleum Engineering — University of Texas at Austin</li>
+                <li>MBA — Penn State University</li>
+                <li>PMP Certified</li>
+              </ul>
+
+              <a
+                href="https://www.linkedin.com/in/jonathancfox/"
+                target="_blank"
+                rel="noopener"
+                style="font-size:14px; text-decoration:underline;"
+              >
+                View LinkedIn profile →
+              </a>
             </div>
           </div>
 
-          <aside class="callout">
-            <h3>Typical outputs</h3>
-            <ul>
-              <li>Flow rates (single-phase or multiphase)</li>
-              <li>Condition indicators (degradation proxies)</li>
-              <li>Operational state estimates and alerts</li>
-            </ul>
+          <h2>Who we are</h2>
 
-            <h3 style="margin-top:18px;">Designed for</h3>
-            <ul>
-              <li>Engineering teams that need traceability and robustness</li>
-              <li>Operations teams that need confidence in runtime outputs</li>
-              <li>Pilots that must prove value quickly</li>
-            </ul>
-          </aside>
-        </div>
-      </div>
-    </section>
-  </main>
+          <p class="lede">
+            Phlux was founded by an engineer focused on bringing production-grade inference into real operational workflows.
+            The emphasis is on credibility, deployability, and delivering outcomes that stand up to engineering scrutiny.
+          </p>
 
-  <!-- HOW page -->
-  <main id="page-how" class="page" aria-label="How">
-    <section class="section">
-      <div class="wrap">
-        <div class="grid2">
-          <div>
-            <h2>How it works</h2>
-            <p class="lede">
-              A simple lifecycle: define scope → validate assumptions → train → deploy → monitor.
-              Physics keeps inference grounded; ML makes it operationally fast.
-            </p>
+          <p class="lede">
+            The background combines deep experience in flow assurance and production systems with a strong foundation
+            in physics-based simulation, project delivery, and business execution.
+          </p>
 
-            <div class="cards">
-              <div class="card">
-                <h3>Define scope</h3>
-                <p>Identify available signals, target outputs, and operating envelope. Set measurable success criteria.</p>
-              </div>
-              <div class="card">
-                <h3>Validate assumptions</h3>
-                <p>Align physics to expected behavior and constraints. Establish a baseline for confidence.</p>
-              </div>
-              <div class="card">
-                <h3>Deploy + monitor</h3>
-                <p>Ship versioned runtime artifacts and track drift / reliability so outputs remain trustworthy.</p>
-              </div>
+          <div class="cards">
+            <div class="card">
+              <h3>Engineering foundation</h3>
+              <p>
+                Over 15 years of experience working on flow assurance and production system challenges across offshore
+                and onshore assets, grounded in a formal petroleum engineering education.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Simulation &amp; modeling</h3>
+              <p>
+                Extensive hands-on experience using physics-based models for dynamic simulation, operational studies,
+                and decision support. 
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Delivery &amp; leadership</h3>
+              <p>
+                MBA-trained and PMP certified, bringing structure, discipline, and commercial awareness to how technical
+                solutions are scoped, validated, and deployed.
+              </p>
             </div>
           </div>
+        </div>
 
-          <aside class="callout">
-            <h3>Lifecycle (pilot-ready)</h3>
-            <ul>
-              <li><strong>Define scope:</strong> signals, outputs, acceptance criteria</li>
-              <li><strong>Model + validate:</strong> physics alignment and constraints</li>
-              <li><strong>Train for inference:</strong> realistic noise, coverage, edge cases</li>
-              <li><strong>Deploy + monitor:</strong> versioning, drift checks, reliability</li>
-            </ul>
-          </aside>
+        <!-- RIGHT COLUMN -->
+        <aside class="callout">
+          <h3>Guiding principles</h3>
+          <ul>
+            <li>Engineering credibility over hype</li>
+            <li>Solutions that scale</li>
+            <li>Clear validation and acceptance criteria</li>
+            <li>Focus on value realization and ROI</li>
+          </ul>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<!-- HOW page -->
+<main id="page-how" class="page" aria-label="How">
+  <section class="section">
+    <div class="wrap">
+
+      <h2>How it works</h2>
+      <p class="lede">
+        A practical workflow designed for pilots: start with clear scope and acceptance criteria,
+        build coverage with synthetic scenarios, train for robust inference, deploy as a versioned runtime,
+        and monitor performance over time.
+      </p>
+
+      <div class="steps" aria-label="Process steps">
+        <div class="step">
+          <div class="stepNum">1</div>
+          <h3 class="stepTitle">Define scope</h3>
+          <p class="stepBody">
+            Identify available signals, target outputs, operating envelope, and acceptance criteria.
+          </p>
+          <div class="badgeRow">
+            <span class="badge">signals</span>
+            <span class="badge">outputs</span>
+            <span class="badge">criteria</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="stepNum">2</div>
+          <h3 class="stepTitle">Model + generate synthetic data</h3>
+          <p class="stepBody">
+            Build coverage across realistic operating conditions and edge cases using structured scenario generation.
+          </p>
+          <div class="badgeRow">
+            <span class="badge">coverage</span>
+            <span class="badge">edge cases</span>
+            <span class="badge">noise</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="stepNum">3</div>
+          <h3 class="stepTitle">Train</h3>
+          <p class="stepBody">
+            Train inference models and validate performance across the full envelope, not just nominal conditions.
+          </p>
+          <div class="badgeRow">
+            <span class="badge">validation</span>
+            <span class="badge">robustness</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="stepNum">4</div>
+          <h3 class="stepTitle">Deploy</h3>
+          <p class="stepBody">
+            Package a versioned runtime (schema + preprocessing + model) for reliable integration into workflows.
+          </p>
+          <div class="badgeRow">
+            <span class="badge">versioned</span>
+            <span class="badge">runtime</span>
+            <span class="badge">API-ready</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="stepNum">5</div>
+          <h3 class="stepTitle">Monitor</h3>
+          <p class="stepBody">
+            Track drift, reliability, and performance so outputs remain trustworthy as operations change.
+          </p>
+          <div class="badgeRow">
+            <span class="badge">drift</span>
+            <span class="badge">reliability</span>
+          </div>
         </div>
       </div>
-    </section>
-  </main>
 
-  <!-- USE CASES page -->
-  <main id="page-use" class="page" aria-label="Use cases">
-    <section class="section">
-      <div class="wrap">
-        <h2>Use cases</h2>
+      <!-- PILOT READY -->
+      <div class="callout" style="margin-top:32px;">
+        <h3>What makes it pilot-ready</h3>
+        <ul>
+          <li><strong>Clear acceptance criteria</strong> before any model training</li>
+          <li><strong>Coverage-driven data</strong> (including edge cases, not only nominal)</li>
+          <li><strong>Versioned deployment</strong> (schema + preprocessing + model artifacts)</li>
+          <li><strong>Monitoring plan</strong> (drift + reliability, not just offline accuracy)</li>
+          <li><strong>No dependency on long historical datasets</strong> when they aren’t available</li>
+        </ul>
+      </div>
+
+      <!-- DEPLOYMENT -->
+      <div style="margin-top:34px;">
+        <h2 style="margin-bottom:12px;">Deployment options</h2>
         <p class="lede">
-          Example applications — Phlux extends measurement and improves operational awareness.
+          Phlux can be deployed in the environment that best fits your IT/OT constraints — from a small-footprint
+          on-prem runtime near the data source to centralized cloud deployments for fleet-scale rollout.
         </p>
 
-        <div class="cards">
+        <div class="cards" style="margin-top:22px;">
           <div class="card">
-            <h3>Virtual Flow Metering</h3>
-            <p>Estimate flow rates using pressure/temperature and other available signals, reducing dependency on inline meters.</p>
+            <h3>On-prem / edge</h3>
+            <p>
+              Inference runs entirely within the customer’s network, either on existing servers or a dedicated small-footprint compute device installed on site.
+            </p>
           </div>
+
           <div class="card">
-            <h3>Equipment condition inference</h3>
-            <p>Track condition indicators from system response to detect performance loss earlier.</p>
-          </div>
-          <div class="card">
-            <h3>Operational state + alerts</h3>
-            <p>Detect off-normal behavior and provide state estimates that support troubleshooting and decision-making.</p>
+            <h3>Cloud</h3>
+            <p>
+              Inference runs in a centralized cloud environment. Suitable for portfolio-level deployments where data can be securely transmitted off-site.
+            </p>
           </div>
         </div>
+
+        <div class="callout" style="margin-top:18px;">
+          <h3>Integration</h3>
+          <ul>
+            <li><strong>Flexible API</strong> (REST) for inference, health checks, and versioning</li>
+            <li><strong>Versioned schemas</strong> for inputs/outputs with validation</li>
+            <li><strong>Runtime packaging</strong> includes preprocessing + model artifacts</li>
+          </ul>
+        </div>
       </div>
-    </section>
-  </main>
+
+    </div>
+  </section>
+</main>
+
+    </div>
+  </section>
+</main>
+
+<!-- USE CASES page -->
+<main id="page-use" class="page" aria-label="Use cases">
+  <section class="section">
+    <div class="wrap">
+      <h2>Use cases</h2>
+      <p class="lede">
+        Example applications — Phlux infers hard-to-measure quantities and system state from existing signals,
+        enabling scalable insight across assets and equipment types.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Virtual flow metering</h3>
+          <p>
+            Estimate flow rates for pumps, compressors, and oil &amp; gas wells using pressure, temperature,
+            and other available signals. Applicable across single- and multi-phase fluids, enabling flow insight
+            where physical meters are impractical, costly, or unavailable.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Equipment condition inference</h3>
+          <p>
+            Infer equipment condition and performance loss from system response over time. Operational state
+            classification and alerting are layered on top to highlight off-normal behavior and support
+            troubleshooting before issues escalate.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Embedded OEM &amp; system integrations</h3>
+          <p>
+            Work directly with equipment manufacturers or system vendors to embed inference capabilities
+            into existing products and control architectures, extending measurement and diagnostics
+            without adding field instrumentation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
 
   <!-- CONTACT page -->
   <main id="page-contact" class="page" aria-label="Contact">
@@ -500,7 +814,7 @@
             </p>
 
             <div style="margin-top:18px; display:flex; flex-wrap:wrap; gap:12px;">
-              <a class="btn" href="mailto:hello@thephluxcore.com">hello@thephluxcore.com</a>
+              <a class="btn" href="mailto:jonathan@thephluxcore.com">jonathan@thephluxcore.com</a>
               <a class="btn" href="#use" data-page="use">View use cases</a>
             </div>
 
