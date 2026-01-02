@@ -1,0 +1,10 @@
+{
+  "count": 100,
+  "mape_pct": 0.6,
+  "p95_error_pct": 1.47,
+  "p95_abs_m3_h": 0.72,
+  "wear_mean_pct": 51.63,
+  "wear_p95_pct": 100.0,
+  "wear_max_pct": 100.0,
+  "wear_over_5pct_frac": 0.78
+}
