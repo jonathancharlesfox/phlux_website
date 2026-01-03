@@ -198,12 +198,12 @@ a:hover{ text-decoration: underline; }
 }
 
 .navlink:hover {
-  background: rgba(0, 160, 190, 0.08);  /* light blue from logo */
+  background: rgba(2, 123, 139, 0.171);  /* light blue from logo */
   text-decoration: none;
 }
 
 .navlink.active {
-  background: rgba(0, 160, 190, 0.16);  /* logo blue, flat */
+  background: rgba(2, 123, 139, 0.171);  /* logo blue, flat */
   font-weight: 500;
 }
 
