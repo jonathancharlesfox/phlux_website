@@ -126,7 +126,7 @@ function initPilotResultsViewer() {
     },
     {
       key: "high",
-      folder: "pilot_wear",
+      folder: "pilot_high_wear",
       canvas: cHigh,
       kpi: KPI.high
     }
