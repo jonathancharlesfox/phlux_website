@@ -1,0 +1,96 @@
+{
+  "count": 100,
+  "source_csv": "F:\\phlux\\phlux_lab\\outputs\\kspice_vs_ml (low wear).csv",
+  "columns": {
+    "p_in": "virplant_p_in__bar",
+    "t_in": "virplant_t_in__degC",
+    "p_dis": "virplant_discharge_p__bar",
+    "p_sink": "virplant_sink_p__bar",
+    "dp": "virplant_dp__bar",
+    "speed": "speed__rpm",
+    "rho": "fluid_density__kg/m3",
+    "mu": "fluid_viscosity__cP",
+    "power": "virplant_pump_power__kW",
+    "valve": "valve_opening__frac",
+    "wear_true": "virplant_wear_input__frac",
+    "wear_pred": "ml_wear_pred__frac",
+    "wear_err_pct": "wear_err_pct",
+    "flow_true": "virplant_flow__m3_h",
+    "flow_pred": "ml_flow_pred__m3_h",
+    "flow_abs_err_pct": "flow_abs_error__pct",
+    "corr_delta": "ml_corr_delta__m3_h",
+    "flow_corr": "ml_flow_corrected__m3_h",
+    "corr_abs_err_pct": "corr_abs_error__pct"
+  },
+  "flow_baseline": {
+    "r2": 0.9491,
+    "mape_pct": 5.2,
+    "p50_pct": 4.55,
+    "p90_pct": 9.0,
+    "p95_pct": 9.82,
+    "p99_pct": 10.25,
+    "by_flow_bucket": [
+      {
+        "bucket": "10\u201330",
+        "count": 1,
+        "mean_abs_error_pct": 9.98,
+        "median_abs_error_pct": 9.98,
+        "p95_abs_error_pct": 9.98
+      },
+      {
+        "bucket": "30\u201360",
+        "count": 73,
+        "mean_abs_error_pct": 6.16,
+        "median_abs_error_pct": 5.61,
+        "p95_abs_error_pct": 9.83
+      },
+      {
+        "bucket": "60\u201390",
+        "count": 26,
+        "mean_abs_error_pct": 2.33,
+        "median_abs_error_pct": 2.27,
+        "p95_abs_error_pct": 3.2
+      }
+    ]
+  },
+  "flow_corrected": {
+    "r2": 0.9885,
+    "mape_pct": 1.21,
+    "p50_pct": 0.91,
+    "p90_pct": 2.6,
+    "p95_pct": 3.11,
+    "p99_pct": 5.17,
+    "by_flow_bucket": [
+      {
+        "bucket": "10\u201330",
+        "count": 1,
+        "mean_abs_error_pct": 3.21,
+        "median_abs_error_pct": 3.21,
+        "p95_abs_error_pct": 3.21
+      },
+      {
+        "bucket": "30\u201360",
+        "count": 73,
+        "mean_abs_error_pct": 0.78,
+        "median_abs_error_pct": 0.61,
+        "p95_abs_error_pct": 2.46
+      },
+      {
+        "bucket": "60\u201390",
+        "count": 26,
+        "mean_abs_error_pct": 2.34,
+        "median_abs_error_pct": 1.98,
+        "p95_abs_error_pct": 5.01
+      }
+    ]
+  },
+  "wear": {
+    "true_mean_pct": 1.19,
+    "pred_mean_pct": 2.68,
+    "mape_pct": 155.11,
+    "p50_pct": 109.33,
+    "p90_pct": 302.87,
+    "p95_pct": 357.68,
+    "p99_pct": 1202.82
+  }
+}
