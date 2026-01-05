@@ -404,10 +404,8 @@ function nudgeNavTabsIntoView() {
   const tabs = document.querySelector(".links");
   if (!tabs) return;
 
-  // If overflow exists, push scroll so the right-most items are visible.
-  if (tabs.scrollWidth > tabs.clientWidth + 8) {
-    tabs.scrollLeft = tabs.scrollWidth;
-  }
+  // Always start at the LEFT so "Home" is visible
+  tabs.scrollLeft = 0;
 }
 
 window.addEventListener("load", () => { setTimeout(nudgeNavTabsIntoView, 60); });
