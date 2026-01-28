@@ -1,0 +1,114 @@
+<main id="page-deployment" class="page" aria-label="Deployment">
+  <section class="section">
+    <div class="wrap">
+      <header style="max-width:860px; margin-bottom:32px;">
+        <h1 style="font-size:var(--h2); margin-bottom:12px;">Production readiness</h1>
+        <p class="lede">
+          Deployment is not an afterthought. Every model is packaged as a versioned runtime with schemas, preprocessing, and monitoring hooks. Trust in production comes from validity envelopes, monitoring, and versioned releases.
+        </p>
+      </header>
+
+      <div class="grid2">
+        <div>
+          <h2>Runtime packaging</h2>
+          <p class="lede">
+            Every deployment includes a complete runtime package: input/output schemas, preprocessing pipelines, model artifacts, and version metadata. This ensures that behavior is repeatable across environments and that deployments are traceable.
+          </p>
+          <p class="lede">
+            The Model Passport documents what was validated, where it's valid, and how to monitor it. This is not just a model file — it's a complete deployment package.
+          </p>
+        </div>
+
+        <aside>
+          <div class="callout">
+            <h3>Deployment deliverables</h3>
+            <ul>
+              <li>Versioned runtime package (schema + preprocessing + model)</li>
+              <li>Model Passport (validation results, operating envelope)</li>
+              <li>API endpoints or integration hooks</li>
+              <li>Monitoring configuration (drift + reliability)</li>
+              <li>Documentation and handoff materials</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <div class="deploymentSplit" style="margin-top:48px;">
+        <div class="deploymentGrid">
+          <div class="deploymentLeft">
+            <h2 style="margin-bottom:12px;">Deployment options</h2>
+            <p class="lede deploymentLede">
+              Phluux can be deployed in the environment that best fits your IT/OT constraints — from a small-footprint
+              on-prem runtime near the data source to centralized cloud deployments for fleet-scale rollout.
+            </p>
+
+            <div class="cards" style="margin-top:22px;">
+              <div class="card flatBox">
+                <h3>On-prem / edge</h3>
+                <p>
+                  Inference runs entirely within the customer's network, either on existing servers or a dedicated small-footprint compute device installed on site. Suitable for air-gapped environments or low-latency requirements.
+                </p>
+              </div>
+
+              <div class="card flatBox">
+                <h3>Cloud</h3>
+                <p>
+                  Inference runs in a centralized cloud environment. Suitable for portfolio-level deployments where data can be securely transmitted off-site. Enables fleet-scale rollout and centralized monitoring.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="deploymentDiagram">
+            <img
+              src="assets/data_flow_diagram.png"
+              alt="High-level data flow showing plant signals sent to cloud-based Phluux inference runtime and predictions returned"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <section style="margin-top:48px; padding:32px; background:var(--soft); border-radius:var(--radius);">
+        <h2 style="margin-bottom:12px;">Integration capabilities</h2>
+        <p class="lede" style="margin-bottom:22px;">
+          Every deployment is designed for reliable integration into existing workflows, whether through REST APIs, edge runtimes, or embedded OEM integrations.
+        </p>
+
+        <div class="cards">
+          <div class="card flatBox">
+            <h3>API endpoints</h3>
+            <p>
+              Flexible REST endpoints for inference, health checks, and version discovery. Stable, versioned schemas with validation and clear error responses.
+            </p>
+          </div>
+
+          <div class="card flatBox">
+            <h3>Versioned schemas</h3>
+            <p>
+              Stable, versioned input/output schemas with validation. Changes are versioned and backward-compatible where possible.
+            </p>
+          </div>
+
+          <div class="card flatBox">
+            <h3>Runtime bundles</h3>
+            <p>
+              Complete runtime packages that include preprocessing + model artifacts. Behavior is repeatable across environments.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div style="margin-top:48px; text-align:center; padding:32px 0;">
+        <h2 style="margin-bottom:18px;">Ready to deploy?</h2>
+        <p class="lede" style="max-width:680px; margin:0 auto 24px;">
+          Talk to us about deployment options, whether you're using Phluux Studio or engaging us for managed delivery.
+        </p>
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+          <a class="btn btnSolid" href="#contact" data-page="contact">Talk to us about deployment →</a>
+          <a class="btn btnLight" href="#solutions" data-page="solutions">View delivery options</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

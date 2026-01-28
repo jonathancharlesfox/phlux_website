@@ -3,14 +3,14 @@
 
 document.getElementById("y").textContent = new Date().getFullYear();
 
-const pages = ["home", "how", "use", "pilot", "what", "contact"];
+const pages = ["home", "platform", "deployment", "solutions", "about", "contact"];
 
 const partials = {
   home: "partials/home.html",
-  how: "partials/how.html",
-  use: "partials/use.html",
-  pilot: "partials/pilot.html",
-  what: "partials/who.html",
+  platform: "partials/platform.html",
+  deployment: "partials/deployment.html",
+  solutions: "partials/solutions.html",
+  about: "partials/about.html",
   contact: "partials/contact.html",
 };
 
@@ -29,6 +29,13 @@ function setActive(page) {
   document.querySelectorAll(".navlink").forEach((a) => {
     a.classList.toggle("active", a.getAttribute("data-page") === page);
   });
+
+  // Add/remove body class to hide logo on home page
+  if (page === "home") {
+    document.body.classList.add("page-home");
+  } else {
+    document.body.classList.remove("page-home");
+  }
 
   if (location.hash !== `#${page}`) {
     history.replaceState(null, "", `#${page}`);
