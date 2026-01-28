@@ -1519,6 +1519,7 @@ footer{
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
   margin-top: 32px;
+  align-items: start;
 }
 
 .approachCard {
@@ -1527,8 +1528,11 @@ footer{
   border-radius: 0;
   padding: 22px;
   display: grid;
+  grid-template-rows: 20px 42.5px 1fr;
   gap: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  height: 100%;
+  align-items: start;
 }
 
 .approachNum {
@@ -1537,17 +1541,28 @@ footer{
   font-weight: 700;
   color: var(--teal);
   letter-spacing: 0.08em;
+  display: block;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  line-height: 20px;
 }
 
 .approachCard h3 {
   margin: 0;
+  padding: 0;
   font-size: 17px;
   font-weight: 650;
   color: var(--ink);
+  line-height: 1.25;
+  height: 42.5px;
+  display: block;
+  overflow: hidden;
 }
 
 .approachCard p {
   margin: 0;
+  padding: 0;
   font-size: 14.5px;
   line-height: 1.6;
   color: var(--muted);

@@ -1,112 +1,74 @@
-<main id="page-deployment" class="page" aria-label="Deployment">
+<main id="page-deployment" class="page" aria-label="Architecture">
   <section class="section">
     <div class="wrap">
-      <header style="max-width:860px; margin-bottom:32px;">
-        <h1 style="font-size:var(--h2); margin-bottom:12px;">Production readiness</h1>
-        <p class="lede">
-          Deployment is not an afterthought. Every model is packaged as a versioned runtime with schemas, preprocessing, and monitoring hooks. Trust in production comes from validity envelopes, monitoring, and versioned releases.
-        </p>
-      </header>
-
-      <div class="grid2">
-        <div>
-          <h2>Runtime packaging</h2>
-          <p class="lede">
-            Every deployment includes a complete runtime package: input/output schemas, preprocessing pipelines, model artifacts, and version metadata. This ensures that behavior is repeatable across environments and that deployments are traceable.
-          </p>
-          <p class="lede">
-            The Model Passport documents what was validated, where it's valid, and how to monitor it. This is not just a model file — it's a complete deployment package.
-          </p>
-        </div>
-
-        <aside>
-          <div class="callout">
-            <h3>Deployment deliverables</h3>
+      <div class="contentBlock">
+        <h2>Platform Architecture</h2>
+        <div class="grid2" style="margin-top:24px;">
+          <div>
+            <p class="lede">
+              Phluux Studio is a modular, cloud-native platform composed of independently deployed web, orchestration, and runtime services. The platform is accessed through a browser-based interface and, depending on deployment configuration, optional programmatic APIs to support automated inference workflows. All execution occurs in the cloud using managed, containerized runtime services. Users submit feature values to the platform, inference is executed within the managed environment, and predictions are returned through secure, scalable interfaces. This architecture prioritizes reliability, scalability, and integration while maintaining a consistent user experience.
+            </p>
+          </div>
+          <aside class="callout">
+            <h3>Key capabilities</h3>
             <ul>
-              <li>Versioned runtime package (schema + preprocessing + model)</li>
-              <li>Model Passport (validation results, operating envelope)</li>
-              <li>API endpoints or integration hooks</li>
-              <li>Monitoring configuration (drift + reliability)</li>
-              <li>Documentation and handoff materials</li>
+              <li>Enterprise-grade authentication and access control</li>
+              <li>Cloud-native managed execution environment</li>
+              <li>Containerized runtime services</li>
+              <li>API-driven integration interfaces</li>
             </ul>
-          </div>
-        </aside>
+          </aside>
+        </div>
       </div>
 
-      <div class="deploymentSplit" style="margin-top:48px;">
-        <div class="deploymentGrid">
-          <div class="deploymentLeft">
-            <h2 style="margin-bottom:12px;">Deployment options</h2>
-            <p class="lede deploymentLede">
-              Phluux can be deployed in the environment that best fits your IT/OT constraints — from a small-footprint
-              on-prem runtime near the data source to centralized cloud deployments for fleet-scale rollout.
+      <div class="contentBlock" style="margin-top:48px;">
+        <h2>Deployment Options</h2>
+        <p class="lede" style="margin-bottom:32px;">
+          Phluux Studio is a managed, cloud-based platform used to build and package trained models into containerized inference runtimes. Once packaged, the container image is pushed to a registry and can be deployed in different environments based on your IT/OT requirements. The containerized inference runtime is portable and can execute wherever your deployment constraints require.
+        </p>
+
+        <div class="cards" style="margin-top:24px;">
+          <div class="card flatBox">
+            <h3>Managed Cloud Inference (Phluux-Hosted)</h3>
+            <p>
+              The inference container is deployed and run within the Phluux-managed cloud environment. Phluux exposes secure inference endpoints (APIs) that you send feature values to and receive predictions from. This option provides the simplest deployment path with no infrastructure management required on your side.
             </p>
-
-            <div class="cards" style="margin-top:22px;">
-              <div class="card flatBox">
-                <h3>On-prem / edge</h3>
-                <p>
-                  Inference runs entirely within the customer's network, either on existing servers or a dedicated small-footprint compute device installed on site. Suitable for air-gapped environments or low-latency requirements.
-                </p>
-              </div>
-
-              <div class="card flatBox">
-                <h3>Cloud</h3>
-                <p>
-                  Inference runs in a centralized cloud environment. Suitable for portfolio-level deployments where data can be securely transmitted off-site. Enables fleet-scale rollout and centralized monitoring.
-                </p>
-              </div>
-            </div>
           </div>
 
-          <div class="deploymentDiagram">
-            <img
-              src="assets/data_flow_diagram.png"
-              alt="High-level data flow showing plant signals sent to cloud-based Phluux inference runtime and predictions returned"
-              loading="lazy"
-            />
+          <div class="card flatBox">
+            <h3>Customer-Managed Deployment (BYO Runtime)</h3>
+            <p>
+              Pull the container image from the registry and deploy it into your own cloud, edge, or internal infrastructure using your existing tooling and pipelines. You maintain full control over where and how the inference runtime executes, while leveraging Phluux Studio for model development and packaging.
+            </p>
+          </div>
+
+          <div class="card flatBox">
+            <h3>On-Premises Deployment (Phluux-Supported)</h3>
+            <p>
+              Phluux can deliver and install the inference container on customer-provided or Phluux-provided hardware within an on-premises environment, with no dependency on cloud execution. This option is suitable for restricted or regulated environments where data cannot leave your network.
+            </p>
           </div>
         </div>
       </div>
 
-      <section style="margin-top:48px; padding:32px; background:var(--soft); border-radius:var(--radius);">
-        <h2 style="margin-bottom:12px;">Integration capabilities</h2>
-        <p class="lede" style="margin-bottom:22px;">
-          Every deployment is designed for reliable integration into existing workflows, whether through REST APIs, edge runtimes, or embedded OEM integrations.
-        </p>
+      <div class="contentBlock" style="margin-top:48px;">
+        <h2>Scalability, Security & Integration</h2>
+        
+        <div style="margin-top:24px;">
+          <h3 style="margin:0 0 12px; font-size:18px; font-weight:650; color:var(--ink);">Scalability</h3>
+          <p class="lede" style="margin-bottom:32px;">
+            Phluux Studio is designed to support scalable execution of inference workloads through containerized runtime services deployed in the cloud. The platform can accommodate increasing inference demand by running multiple instances of the inference runtime, enabling consistent performance as usage grows.
+          </p>
 
-        <div class="cards">
-          <div class="card flatBox">
-            <h3>API endpoints</h3>
-            <p>
-              Flexible REST endpoints for inference, health checks, and version discovery. Stable, versioned schemas with validation and clear error responses.
-            </p>
-          </div>
+          <h3 style="margin:0 0 12px; font-size:18px; font-weight:650; color:var(--ink);">Security</h3>
+          <p class="lede" style="margin-bottom:32px;">
+            Phluux Studio incorporates role-based access controls and environment-level isolation to ensure users can only access authorized projects and data. The platform leverages cloud-native security mechanisms for authentication, network isolation, and data protection, with encryption applied during data transmission and storage within the managed environment.
+          </p>
 
-          <div class="card flatBox">
-            <h3>Versioned schemas</h3>
-            <p>
-              Stable, versioned input/output schemas with validation. Changes are versioned and backward-compatible where possible.
-            </p>
-          </div>
-
-          <div class="card flatBox">
-            <h3>Runtime bundles</h3>
-            <p>
-              Complete runtime packages that include preprocessing + model artifacts. Behavior is repeatable across environments.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <div style="margin-top:48px; text-align:center; padding:32px 0;">
-        <h2 style="margin-bottom:18px;">Ready to deploy?</h2>
-        <p class="lede" style="max-width:680px; margin:0 auto 24px;">
-          Talk to us about deployment options, whether you're using Phluux Studio or engaging us for managed delivery.
-        </p>
-        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-          <a class="btn btnSolid" href="#contact" data-page="contact">Talk to us about deployment →</a>
-          <a class="btn btnLight" href="#solutions" data-page="solutions">View delivery options</a>
+          <h3 style="margin:0 0 12px; font-size:18px; font-weight:650; color:var(--ink);">Integration</h3>
+          <p class="lede">
+            Phluux Studio supports integration through programmatic interfaces where enabled, allowing inference runtimes and workflows to connect with external systems. Containerized inference outputs are designed to be portable and deployable into existing customer environments, enabling integration with established data pipelines and operational systems without requiring changes to the core platform.
+          </p>
         </div>
       </div>
     </div>

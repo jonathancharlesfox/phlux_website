@@ -1,43 +1,60 @@
 <main id="page-about" class="page" aria-label="About">
   <section class="section">
     <div class="wrap">
-      <div style="display:flex; gap:24px; align-items:flex-start; margin-bottom:32px; flex-wrap:wrap;">
-        <img
-          src="assets/photo.jpg"
-          alt="Jonathan Fox"
-          style="width:140px;height:140px;object-fit:cover;border-radius:8px;border:1px solid var(--line);"
-        />
-        <div>
-          <p class="lede" style="margin:0 0 8px;">
-            <strong>Jonathan Fox</strong><br>
-            Founder and CEO
-          </p>
-          <ul style="margin:0 0 12px; padding-left:18px; color:var(--muted); font-size:14px; line-height:1.7;">
-            <li>B.S. Petroleum Engineering — University of Texas at Austin</li>
-            <li>MBA — Penn State University</li>
-            <li>PMP Certified</li>
-          </ul>
-          <a href="https://www.linkedin.com/in/jonathancfox/" target="_blank" rel="noopener" style="font-size:14px; text-decoration:underline;">
-            View LinkedIn profile →
-          </a>
+      <div style="background:#fff; border:1px solid var(--line); padding:28px; margin-bottom:32px; box-shadow:0 4px 12px rgba(0,0,0,0.06); display:inline-block; width:fit-content; max-width:100%;">
+        <div style="display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap;">
+          <div style="position:relative;">
+            <img
+              src="assets/photo.jpg"
+              alt="Jonathan Fox"
+              style="width:140px;height:140px;object-fit:cover;border-radius:50%;border:3px solid var(--teal);box-shadow:0 4px 16px rgba(6,138,109,0.2);"
+            />
+          </div>
+          <div style="flex:1; min-width:200px;">
+            <h3 style="margin:0 0 6px; font-size:24px; font-weight:650; color:var(--ink); letter-spacing:-0.01em;">
+              Jonathan Fox
+            </h3>
+            <p style="margin:0 0 18px; color:var(--teal); font-size:15px; font-weight:600; letter-spacing:0.02em;">
+              Founder and CEO
+            </p>
+            <div style="margin-bottom:18px; padding-top:18px; border-top:1px solid var(--line);">
+              <p style="margin:0 0 10px; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); font-weight:600;">
+                Education & Credentials
+              </p>
+              <ul style="margin:0; padding-left:20px; color:var(--muted); font-size:14.5px; line-height:1.8; list-style-type:disc;">
+                <li style="margin-bottom:6px;">B.S. Petroleum Engineering — University of Texas at Austin</li>
+                <li style="margin-bottom:6px;">Master of Business Administration (MBA) — Penn State University</li>
+                <li>PMP Certified</li>
+              </ul>
+            </div>
+            <a href="https://www.linkedin.com/in/jonathancfox/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:var(--teal); text-decoration:none; padding:8px 16px; border:1.5px solid var(--teal); transition:all 0.2s ease;">
+              <span>LinkedIn</span>
+              <span style="font-size:16px;">→</span>
+            </a>
+            <style>
+              a[href*="linkedin"]:hover {
+                background:var(--teal);
+                color:#fff;
+                text-decoration:none;
+              }
+            </style>
+          </div>
         </div>
       </div>
 
       <div class="grid2">
         <div>
-          <h2>Mission</h2>
+          <h2>Mission and Background</h2>
           <p class="lede">
             Phluux was founded to bring production-grade inference into real operational workflows for physical assets. We focus on making machine learning deployable, scalable, and trusted — not just accurate in a lab notebook.
           </p>
 
-          <h2 style="margin-top:36px;">Background</h2>
-          <p class="lede">
-            Jonathan Fox brings deep experience in flow assurance and industrial process systems, combined with a strong foundation in physics-based simulation, machine learning, and project delivery. After years of delivering inference solutions through managed engagements, the repeatable learning system — coverage-driven scenarios, acceptance criteria upfront, full-envelope validation, and deployment-ready packaging — became Phluux Studio.
+          <p class="lede" style="margin-top:16px;">
+            Whether you use Phluux Studio or engage us for managed delivery, you get the same learning system and deployment approach. The difference is who runs the workflow.
           </p>
 
-          <h2 style="margin-top:36px;">How we work</h2>
-          <p class="lede">
-            Whether you use Phluux Studio or engage us for managed delivery, you get the same learning system and deployment approach. The difference is who runs the workflow.
+          <p class="lede" style="margin-top:16px;">
+            Jonathan Fox brings deep experience in flow assurance and industrial process systems, combined with a strong foundation in physics-based simulation, machine learning, and project delivery. After years of delivering inference solutions through managed engagements, the repeatable learning system — coverage-driven scenarios, acceptance criteria upfront, full-envelope validation, and deployment-ready packaging — became Phluux Studio.
           </p>
         </div>
 
@@ -47,14 +64,14 @@
             <li><strong>Machine learning &amp; inference:</strong> Stanford certification with 8+ years developing hybrid physics-informed inference solutions deployed globally</li>
             <li><strong>Flow assurance:</strong> 15+ years in production systems across offshore and onshore assets</li>
             <li><strong>Physics-based simulation:</strong> Extensive experience with dynamic models for operational studies and design validation</li>
-            <li><strong>Delivery &amp; execution:</strong> MBA-trained and PMP certified, bringing commercial discipline to technical delivery</li>
+            <li><strong>Delivery &amp; execution:</strong> Master of Business Administration (MBA)-trained and PMP certified, bringing commercial discipline to technical delivery</li>
           </ul>
         </aside>
       </div>
 
-      <h2 style="margin-top:48px; margin-bottom:18px;">Selected Publications</h2>
-      <p class="lede" style="margin-bottom:22px; font-size:15px; color:var(--muted);">
-        Research and technical contributions from prior work at Kongsberg Digital
+      <h2 style="margin-top:38px; margin-bottom:18px;">Selected Publications</h2>
+      <p class="lede" style="margin-bottom:22px; font-size:10px; color:var(--muted);">
+        Research and technical contributions from prior work at Kongsberg Digital Inc.
       </p>
 
       <div class="cards">
