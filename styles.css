@@ -1485,6 +1485,24 @@ footer{
   background: var(--bg);
 }
 
+/* Key capabilities: no gap between content band and section divider line */
+#page-platform .sectionKeyCapabilities {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+#page-platform .sectionKeyCapabilities .wrap {
+  padding-bottom: 0;
+}
+#page-platform .sectionKeyCapabilities .wrap > *:last-child {
+  margin-bottom: 0 !important;
+}
+#page-platform .sectionKeyCapabilities .cards {
+  margin-bottom: 0;
+}
+#page-platform .sectionKeyCapabilities .wrap .lede:last-of-type {
+  margin-bottom: 0 !important;
+}
+
 .sectionAlt {
   background: rgba(255, 255, 255, 0.4);
 }
