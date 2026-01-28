@@ -1453,6 +1453,38 @@ footer{
   margin-bottom: 18px;
 }
 
+/* Home hero: no empty band above divider — size to content, divider right below */
+#page-home .hero {
+  min-height: 0;
+  align-items: flex-start;
+}
+#page-home .heroContent {
+  padding: 60px 0 32px;
+  width: 100%;
+}
+
+/* First section after hero: align block with header divider */
+#page-home .section:first-of-type {
+  padding-top: 60px;
+  background: var(--bg);
+}
+
+/* Platform hero: no empty band above divider — size to content, divider right below */
+#page-platform .hero {
+  min-height: 0;
+  align-items: flex-start;
+}
+#page-platform .heroContent {
+  padding: 60px 0 32px;
+  width: 100%;
+}
+
+/* First section after hero on platform */
+#page-platform .section:first-of-type {
+  padding-top: 60px;
+  background: var(--bg);
+}
+
 .sectionAlt {
   background: rgba(255, 255, 255, 0.4);
 }
