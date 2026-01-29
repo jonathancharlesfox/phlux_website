@@ -926,8 +926,10 @@ h2{
     gap: 10px;
   }
 
-  body.page-home .nav {
-    justify-content: center;
+  /* Tabs always start left-aligned on mobile so Home is visible first */
+  body.page-home .nav,
+  body.page-home .links {
+    justify-content: flex-start;
   }
 
   .brand{
@@ -938,6 +940,7 @@ h2{
 
   .links{
     flex: 1 1 auto;
+    min-width: 0;              /* allow flex child to shrink for overflow */
     justify-content: flex-start;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -955,6 +958,12 @@ h2{
     flex: 0 0 auto;            /* prevent shrinking into two rows */
     padding: 8px 10px;
     font-size: 13px;
+  }
+
+  /* Reduce topbar padding so tabs start closer to left edge */
+  .topbar .wrap {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
 /* ===== Footer ===== */

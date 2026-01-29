@@ -68,6 +68,7 @@ function setActive(page) {
   }
 
   window.scrollTo({ top: 0, behavior: "auto" });
+  nudgeNavTabsIntoView(); /* Mobile: keep tabs scrolled left so Home is visible */
 }
 
 async function loadPartials() {
@@ -430,15 +431,13 @@ function initPilotResultsViewer() {
 }
 
 // ============================================================
-// Mobile UX: if tabs overflow, start scrolled to the right
-// (prevents tabs being hidden under the logo on narrow screens)
+// Mobile UX: tabs start scrolled to the LEFT so "Home" is visible
 // ============================================================
 function nudgeNavTabsIntoView() {
   const tabs = document.querySelector(".links");
   if (!tabs) return;
-
-  // Always start at the LEFT so "Home" is visible
   tabs.scrollLeft = 0;
 }
 
 window.addEventListener("load", () => { setTimeout(nudgeNavTabsIntoView, 60); });
+window.addEventListener("resize", () => { setTimeout(nudgeNavTabsIntoView, 100); });
