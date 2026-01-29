@@ -1489,6 +1489,11 @@ footer{
 #page-platform .sectionKeyCapabilities {
   padding-bottom: 0;
   margin-bottom: 0;
+  /* Linear gradient: tint starts at top (divider) and fades down */
+  background:
+    linear-gradient(180deg, rgba(6, 138, 109, 0.06) 0%, transparent 35%),
+    linear-gradient(180deg, rgba(47, 60, 74, 0.04) 0%, transparent 40%),
+    var(--bg);
 }
 #page-platform .sectionKeyCapabilities .wrap {
   padding-bottom: 0;
@@ -1503,8 +1508,57 @@ footer{
   margin-bottom: 0 !important;
 }
 
+/* Section after Key capabilities (Avoiding the black box): tint starts at top */
+#page-platform .sectionKeyCapabilities + .section {
+  background:
+    linear-gradient(180deg, rgba(6, 138, 109, 0.06) 0%, transparent 35%),
+    linear-gradient(180deg, rgba(47, 60, 74, 0.04) 0%, transparent 40%),
+    var(--bg);
+}
+
+/* The 5-step story: tint starts at top */
+#page-platform .section:nth-of-type(2) {
+  background:
+    linear-gradient(180deg, rgba(6, 138, 109, 0.06) 0%, transparent 35%),
+    linear-gradient(180deg, rgba(47, 60, 74, 0.04) 0%, transparent 40%),
+    var(--bg);
+}
+
 .sectionAlt {
   background: rgba(255, 255, 255, 0.4);
+}
+
+/* Third section on home: tint starts at top (divider above) */
+#page-home .section:nth-of-type(3) {
+  background:
+    linear-gradient(180deg, rgba(6, 138, 109, 0.06) 0%, transparent 35%),
+    linear-gradient(180deg, rgba(47, 60, 74, 0.04) 0%, transparent 40%),
+    var(--bg);
+}
+
+/* Architecture (deployment) page: section backgrounds start at divider above */
+#page-deployment .section:first-of-type {
+  background: var(--bg);
+}
+#page-deployment .section:nth-of-type(2),
+#page-deployment .section:nth-of-type(3) {
+  /* Linear gradient: tint starts at top (divider) and fades down */
+  background:
+    linear-gradient(180deg, rgba(6, 138, 109, 0.06) 0%, transparent 35%),
+    linear-gradient(180deg, rgba(47, 60, 74, 0.04) 0%, transparent 40%),
+    var(--bg);
+}
+
+/* About page: section backgrounds start at divider above */
+#page-about .section:first-of-type {
+  background: var(--bg);
+}
+#page-about .section:nth-of-type(2) {
+  /* Linear gradient: tint starts at top (divider) and fades down */
+  background:
+    linear-gradient(180deg, rgba(6, 138, 109, 0.06) 0%, transparent 35%),
+    linear-gradient(180deg, rgba(47, 60, 74, 0.04) 0%, transparent 40%),
+    var(--bg);
 }
 
 .sectionPlatform {
