@@ -32,6 +32,15 @@
   <!-- Pages injected here -->
   <div id="pages"></div>
 
+  <!-- Lightbox for welcome screenshot (always in DOM) -->
+  <div id="welcomeLightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Phluux Studio welcome screenshot">
+    <div class="lightboxBackdrop" data-lightbox-close></div>
+    <div class="lightboxContent">
+      <button type="button" class="lightboxClose" data-lightbox-close aria-label="Close">✕</button>
+      <img src="assets/welcome.png" alt="Phluux Studio welcome page (full size)" />
+    </div>
+  </div>
+
   <footer>
     <div class="wrap">
       <div class="footerRow">
@@ -41,6 +50,6 @@
     </div>
   </footer>
 
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>

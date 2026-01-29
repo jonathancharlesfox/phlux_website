@@ -461,6 +461,97 @@ h2{
   padding-left: 18px;
 }
 
+/* Welcome screenshot (replaces callout on platform) */
+.welcomeScreenshotWrap {
+  align-self: start;
+  border: 1px solid var(--line);
+  padding: 18px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+.welcomeScreenshotWrap h3 {
+  margin: 0 0 8px;
+  font-size: var(--h3);
+  letter-spacing: -0.01em;
+  font-weight: 650;
+}
+.welcomeScreenshotBtn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.welcomeScreenshotBtn:hover {
+  opacity: 0.92;
+}
+.welcomeScreenshot {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+}
+
+/* Lightbox for welcome screenshot */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.lightbox.isOpen {
+  display: flex;
+}
+.lightboxBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+}
+.lightboxContent {
+  position: relative;
+  max-width: 95vw;
+  max-height: 95vh;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  overflow: auto;
+}
+.lightboxContent img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+}
+.lightboxClose {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--ink);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease;
+}
+.lightboxClose:hover {
+  background: #fff;
+}
+
 .cards{
   margin-top: 34px;
   display:grid;

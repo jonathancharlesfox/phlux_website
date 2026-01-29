@@ -3,6 +3,32 @@
 
 document.getElementById("y").textContent = new Date().getFullYear();
 
+// Welcome screenshot lightbox (event delegation, runs immediately)
+document.addEventListener("click", (e) => {
+  const trigger = e.target.closest("[data-lightbox-trigger], .welcomeScreenshotBtn");
+  const close = e.target.closest("[data-lightbox-close]");
+  const lb = document.getElementById("welcomeLightbox");
+  if (trigger && lb && !close) {
+    e.preventDefault();
+    e.stopPropagation();
+    lb.classList.add("isOpen");
+    lb.setAttribute("aria-hidden", "false");
+  } else if (close && lb) {
+    e.preventDefault();
+    lb.classList.remove("isOpen");
+    lb.setAttribute("aria-hidden", "true");
+  }
+}, true);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const lb = document.getElementById("welcomeLightbox");
+    if (lb?.classList.contains("isOpen")) {
+      lb.classList.remove("isOpen");
+      lb.setAttribute("aria-hidden", "true");
+    }
+  }
+});
+
 const pages = ["home", "platform", "deployment", "solutions", "about", "contact"];
 
 const partials = {
