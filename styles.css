@@ -1260,6 +1260,18 @@ footer{
 /* Let cards fill more horizontal space */
 .deploymentLeft .card{ width: 100%; }
 
+/* Deployment option badge: rectangle with background below header */
+.deploymentOption {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 8px 0 14px 0;
+  background: rgba(6, 138, 109, 0.12);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 0;
+}
 
 /* =========================================================
    PILOT: Flow Prediction Accuracy (final-only)
